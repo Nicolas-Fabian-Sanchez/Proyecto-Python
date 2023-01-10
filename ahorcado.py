@@ -14,13 +14,16 @@ palabraSecreta = listaPalabras[indice] # creo la variable, casa a ser un string 
 vidas = 6
 letrasUsadas=[] # creo una lista vacia
 
-
-print ("""
-    Bienvenido al juego del "AHORCADO"
-    la cosa es asi yo pienso una palabra y vos tratas de adivinarla   
-    Listo , comencemos !!!   """)
-
 nombre = input("ingrese su nombre aqui : ")
+
+
+print (F"""
+    Bienvenido {nombre} al juego del "AHORCADO"
+    La cosa es asi yo pienso una palabra y vos tratas de adivinarla
+    Para eso tenes 6 vidas    
+    Listo , comencemos !!!   """)
+os.system("pause")
+
 
 while True : # con el while True me aseguro que siempre se entre al bucle 
     letraEncontrada = 0 
