@@ -4,7 +4,7 @@
 # mostrar vida restantes 
 import os  # importo esta libreria que me sirve para limpiar pantalla
 from random import randint # para importar de la libreria randon la funcion randit (que se usa para aleatoridad)
-from funcionBaseDatos import baseDatos , listapalabras # importo la funcion creada 
+from funcionBaseDatos import baseDatos , listapalabras,obtenerUsuario ,editarPuntaje,agregarUsuario,tablaPosiciones# importo la funcion creada 
 
 baseDatos()#executo dicha funcion para crear la base de datos 
 
@@ -20,6 +20,7 @@ print ("""
     la cosa es asi yo pienso una palabra y vos tratas de adivinarla   
     Listo , comencemos !!!   """)
 
+nombre = input("ingrese su nombre aqui : ")
 
 while True : # con el while True me aseguro que siempre se entre al bucle 
     letraEncontrada = 0 
@@ -35,7 +36,8 @@ while True : # con el while True me aseguro que siempre se entre al bucle
     print("")
     print("-"* 50)
     if letraEncontrada == len(palabraSecreta):
-        print(f"has acertado , la palabra secreta era {palabraSecreta}¡¡¡ FELICITACIONES !!!")  
+        print(f"has acertado {nombre}, la palabra secreta era {palabraSecreta}¡¡¡ FELICITACIONES !!!")  
+        puntaje = vidas * len(palabraSecreta)
         break     
     print("#"* 5 , "Letras ya Intentadas " , "#"*5)
     print(letrasUsadas)# aqui muestro las letras ya usadas por el usuario ,para no repetirlas 
@@ -54,6 +56,31 @@ while True : # con el while True me aseguro que siempre se entre al bucle
              vidas = vidas -1
              os.system("pause")
     if vidas == 0 :
-        print(f"Has perdido , la palabra secreta era {palabraSecreta}")
+        print(f"Has perdido {nombre}, la palabra secreta era {palabraSecreta}")
+        puntaje = -1 * len(palabraSecreta)
         break   # lo usamos para romper el bucle 
+print(f"{nombre} tu  puntaje fue de : {puntaje}")
 
+nombre = nombre.lower()
+usuario = obtenerUsuario(nombre)
+
+if usuario : # poner asi es igual que poner if usuario == True
+    usuario["puntaje"] = usuario["puntaje"] + puntaje 
+    if usuario["puntaje"] <= 0 :
+        usuario["puntaje"]= 0
+    editarPuntaje(usuario["id"] ,usuario["puntaje"] )
+
+else :
+    if puntaje <= 0 :
+        puntaje = 0
+    agregarUsuario(nombre, puntaje )
+    
+print("Posiciones totales")
+
+posiciones = tablaPosiciones()
+
+for posicion in posiciones :
+    print (f"{posicion['nombre']} <<>> {posicion['puntaje']}")
+
+    
+os.system("pause")
