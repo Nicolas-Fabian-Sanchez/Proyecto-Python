@@ -33,8 +33,8 @@ def comenzar (event=None):
   botonSi.place_forget()
   botonNo.place_forget()
   tabla_1.place_forget()
-  #tabla_2.place_forget() --- aca esta el error , pienso que no lo puedo anular lista " no se  ver"
-  #tabla_3.place_forget() --- si no lo anulo queda mal
+  #tabla_2.place_forget() #--- aca esta el error , pienso que no lo puedo anular lista " no se  ver"
+  #tabla_3.place_forget() #--- si no lo anulo queda mal
   presentacioPalabraSecreta.place(x=20,y=20)
   palabraSecreta.place(x= 20 , y=60)
   elijaLetra.place(x=20 , y = 120)
@@ -44,9 +44,10 @@ def comenzar (event=None):
   presentacioIntentos.place(x=20,y=275)
   etiquetaIntentos.place(x=20,y=300)
   etiquetaVidas.place(x=20,y=360)
-  etiquetaResultado.place(x=350,y=300) # ver como volverlo a resetiar
+  etiquetaResultado.place(x=350,y=300)
+  etiquetaResultado.config(text="")
   
-  #creo las variables del funcionamiento del programa
+ #creo las variables del funcionamiento del programa
   global palabrasSecretas, letrasIntentadas,vidasRestantes,puntaje, nombre
   indice = randint(0,len(listaPalabras)-1)
   palabrasSecretas = listaPalabras[indice]
@@ -114,11 +115,11 @@ def mostrarPalabra():
   etiquetaVidas.config(text=f"{nombre} te restan {vidasRestantes} intentos", font='bold 12')
   
 def posiciones():
-  global tabla_1,tabla_2,tabla_3
+  global tabla_1,tabla_2,tabla_3,usuarios
   usuarios = tablaPosiciones()
   fila = 70
   tabla_1.place(x=280, y=fila)
-  fila=fila+30
+  fila=fila+30 # esto lo hago para que cuando itere me coloque uno debajo del otro a la misma linea
   for usu in usuarios:
     tabla_2=ttk.Label(
       text=f"{usu['nombre']}",
@@ -129,7 +130,8 @@ def posiciones():
       text=f"{usu['puntaje']}",
       width=3,background="lightblue"
     ).place(x=370,y=fila)
-    fila = fila + 20
+    fila = fila + 20 
+ 
   
 def finalizar():
   global nombre, puntaje,botonNo,botonSi,etiqueta_3
@@ -174,6 +176,9 @@ def finalizar():
 def cerrarPrograma():
   root.destroy()
 
+def reiniciar ():
+  pass
+
 #------------- creacion de las etiquetas presentacion (widgets en ingles) ---------- 
 frame = ttk.Label(root,text="Ingrese su nombre aqui : ", width="25") # de esta forma ingreso un texto a la ventana
 #frame.config(padx = 5 ,pady =5 ) # de esta manera configuro el padding
@@ -181,7 +186,7 @@ frame.place(x=260 ,y=10) # place va si o si para que el elemento se muestre en l
 etiqueta_1 = ttk.Entry(root, font="helvetica 20")# de esta forma creo un input para ingresar datos del usuario
 etiqueta_1.place(x=185 , y= 35)
 nombre = etiqueta_1.get() # con get tomo el valor de lo que pose adentro la etiqueta
-nombre= nombre.lower()
+#nombre= nombre.lower()
 frame_2 = ttk.Button(root,text="Entrar!!!",command= bienvenida )#creo un boton de entrada para que se realce la funcion 
 frame_2.place(x=295, y=95)
 boton_comenzar =ttk.Button(root,text="Comencemos !!!",command=comenzar)
