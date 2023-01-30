@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-#import tkinter.font as tkFont
+
 from random import randint
 from funcionBaseDatos import baseDatos , listapalabras,obtenerUsuario ,editarPuntaje,agregarUsuario,tablaPosiciones
 
