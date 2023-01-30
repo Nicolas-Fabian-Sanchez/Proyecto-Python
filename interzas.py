@@ -139,7 +139,7 @@ def posiciones():
   
 def finalizar():
         global nombre, puntaje,botonNo,botonSi,etiqueta_3,ventana2
-        ventana2 = tk.Toplevel(root)
+        ventana2 = tk.Toplevel(root) # creo otra ventana
         ventana2.geometry("720x400")
         ventana2.config(bg="lightblue")
        
@@ -188,9 +188,12 @@ def reiniciar():
         ingresoLetra.delete(0)
         ingresoLetra.focus()
         ventana2.destroy()
-
-
-  
+     # la solucion para no tener que crear otra ventana era la siguiente 
+              #def reiniciar():
+              #global tabla_2, tabla_3
+              #tabla_2=[]
+              #tabla_3=[]
+              #comenzar()
 
 #------------- creacion de las etiquetas presentacion (widgets en ingles) ---------- 
 frame = ttk.Label(root,text="Ingrese su nombre aqui : ", width="25") # de esta forma ingreso un texto a la ventana
