@@ -219,7 +219,7 @@ botonProbar=ttk.Button(root,text="Probar",cursor="hand2",command=eleccionLetra)
 presentacioIntentos=ttk.Label(root,text="Letras ya intentadas :")
 etiquetaIntentos=ttk.Label(root,text="",background="lightblue")
 etiquetaVidas=ttk.Label(root,text="",background="lightblue")
-imagen= tk.PhotoImage(file="ahorcado.png")
+imagen= tk.PhotoImage(file=r"C:\Users\Nico\OneDrive\Imágenes\desarrollo wep\proyecto python el ahorcado\ahorcado.png")
 etiquetaImagen=ttk.Label(root,image=imagen)
 etiquetaResultado = ttk.Label(root,text="",background="lightblue",font="helvetica 20")
 
